@@ -18,8 +18,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1000));
-    _animationCreateRectangle = Tween<double>(begin: 0.1, end: 1).animate(_controller);
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
+    _animationCreateRectangle = Tween<double>(begin: 0.0, end: 1).animate(_controller);
     _animationRotate =
         Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
 
