@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, theme: ThemeData(), home: const MyHomePage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: const MyHomePage());
   }
 }
 
@@ -25,16 +25,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late GeneratorModel generatorModel;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  void _updateRandomValues(size) => setState(() => generatorModel = GeneratorModel(size: size));
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    GeneratorModel generatorModel = GeneratorModel(size: size.width);
+    generatorModel = GeneratorModel(size: size.width);
     return Scaffold(
         backgroundColor: CustomColors.backgroundDark,
         body: Center(
@@ -44,8 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: CustomPaint(painter: RectangleCustom(generatorModel: generatorModel)))),
         floatingActionButton: FloatingActionButton(
             backgroundColor: CustomColors.backgroundFAB,
-            onPressed: () =>
-                WidgetsBinding.instance.addPostFrameCallback((_) => generatorModel = GeneratorModel(size: size.width)),
+            onPressed: () => _updateRandomValues(size.width),
             child: const Icon(Icons.refresh_outlined)));
   }
 }

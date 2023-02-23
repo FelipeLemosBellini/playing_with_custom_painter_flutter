@@ -3,14 +3,21 @@ import 'dart:math';
 
 class GeneratorModel {
   double size;
+  late final Color _randomColor;
+  late final double _randomWidth;
+  late final double _randomHeight;
 
-  GeneratorModel({required this.size});
+  GeneratorModel({required this.size}) {
+    _randomColor = _generateRandomColor();
+    _randomWidth = _generateRandomSize();
+    _randomHeight = _generateRandomSize();
+  }
 
-  Color get randomColor => _generateRandomColor();
+  Color get randomColor => _randomColor;
 
-  double get randomWidth => _generateRandomSize();
+  double get randomWidth => _randomWidth;
 
-  double get randomHeight => _generateRandomSize();
+  double get randomHeight => _randomHeight;
 
   double _generateRandomSize() {
     Random random = Random();
